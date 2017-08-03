@@ -15,8 +15,10 @@ class TalkService
         return PushService::talkSubscribeByAlias($device_id, $topic);
     }
 
-    public static function PushByTag($topic, $title, $description, $content) {
-        return PushService::talkPushByTag($topic, $title, $description, $content);
+    public static function PushByTag($topic, $description, $uri, $device_model='iOS') {
+        $result =  PushService::talkPushByTag($topic, $description, $uri, $device_model);
+        LogService::getInstance()->info("push result", ['result' => $result]);
+        return 1;
     }
 
     public static function talkTrace($trace_id) {

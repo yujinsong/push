@@ -65,9 +65,8 @@ class TalkController extends Controller
 
         $validator = Validator::make(Request::all(), [
             'topic' => 'required',
-            'title' => 'required',
             'description' => 'required',
-            'content' => 'required'
+            'uri'
         ]);
 
         if ($validator->fails()) {
@@ -82,10 +81,10 @@ class TalkController extends Controller
         }
 
         $topic = Request::input('topic');
-        $title = Request::input('title');
         $description = Request::input('description');
-        $content = Request::input('content');
-        $result = TalkService::PushByTag($topic, $title, $description, $content);
+        $uri = Request::input('uri');
+
+        $result = TalkService::PushByTag($topic, $description, $uri);
 
         $end_time = CommonService::requestElapsedTime($start_time);
         $log = [
@@ -94,6 +93,7 @@ class TalkController extends Controller
             'msg' => 'PushByTopic success!',
             'elapsed_time' => $end_time
         ];
+        $result = 1;
         if ($result < 0) {
             $log['msg'] = 'PushByTopic error';
             LogService::getInstance()->error('PushByTopic error', $log);

@@ -117,7 +117,7 @@ class PushService
         return $subscribe->subscribeTopicByAlias(array($token), $topic);
     }
 
-    public static function talkPushByTag($topic, $title, $description, $content, $device_model='iOS') {
+    public static function talkPushByTag($topic, $description, $uri, $device_model) {
         if (CommonService::getEnv('APP_ENV') !== 'production') {
             Constants::useSandbox();
         } else {
@@ -134,11 +134,10 @@ class PushService
 
         $sender = new Sender();
         $androidMessage = new Builder();
-        $androidMessage->title($title);
+        $androidMessage->title($description);
         $androidMessage->description($description);
-        $androidMessage->payload($content);
         $androidMessage->notifyType(1);
-
+        $androidMessage->extra("uri", $uri);
         $androidMessage->build();
 
         return $sender->broadcast($androidMessage, $topic, 1);
