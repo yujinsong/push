@@ -15,7 +15,7 @@ RUN mkdir -p /usr/local/push \
     && echo "catch_workers_output = yes" >>/usr/local/etc/php-fpm.d/www.conf \
     && echo "catch_workers_output = yes" >>/usr/local/etc/php-fpm.d/docker.conf
 
-COPY MessagePush/ /usr/local/push/MessagePush/
+COPY push/ /usr/local/push/MessagePush/
 
 WORKDIR /usr/local/push/MessagePush
 
