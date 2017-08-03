@@ -33,6 +33,7 @@ $app->post('talk/SubscribeTopic', 'TalkController@SubscribeTopic');
 $app->post('talk/PushByTopic', 'TalkController@PushByTopic');
 $app->post('talk/TalkTrace', 'TalkController@TalkTrace');
 
+$app->get('HealthChecker', 'HealthCheckController@HealthChecker');
 
 $app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
 

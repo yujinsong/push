@@ -17,7 +17,7 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 CMD service nginx start
 
-EXPOSE 80
+EXPOSE 443
 
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
