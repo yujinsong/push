@@ -11,7 +11,7 @@ VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/sslkey", "/etc/nginx/conf.d"]
 WORKDIR /etc/nginx
 
 COPY nginx.conf /etc/nginx
-COPY swaying-api.conf /etc/nginx/conf.d
+COPY push.conf /etc/nginx/conf.d
 COPY xkeys.crt /etc/nginx/sslkey
 COPY xkeys.key /etc/nginx/sslkey
 COPY xkeys.key.unsecure /etc/nginx/sslkey
