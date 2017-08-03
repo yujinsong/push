@@ -4,8 +4,6 @@ FROM php:5.6-fpm
 
 MAINTAINER swing <app@dddsway.com>
 
-ENV CODEPATH=/usr/local/push
-
 # add php.ini, official images has not default php.ini
 COPY php.ini /usr/local/etc/php
 
@@ -17,9 +15,9 @@ RUN mkdir -p /usr/local/push \
     && echo "catch_workers_output = yes" >>/usr/local/etc/php-fpm.d/www.conf \
     && echo "catch_workers_output = yes" >>/usr/local/etc/php-fpm.d/docker.conf
 
-COPY MessagePush/ $CODEPATH/MessagePush/
+COPY MessagePush/ /usr/local/push/MessagePush/
 
-WORKDIR $CODEPATH/MessagePush
+WORKDIR /usr/local/push/MessagePush
 
 EXPOSE 9000
 CMD ["bash", "/usr/local/sbin/php-fpm"]
