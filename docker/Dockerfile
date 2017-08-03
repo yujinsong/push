@@ -20,7 +20,7 @@ COPY MessagePush/ /usr/local/push/MessagePush/
 WORKDIR /usr/local/push/MessagePush
 
 EXPOSE 9000
-CMD ["bash", "/usr/local/sbin/php-fpm"]
+CMD ["/usr/local/sbin/php-fpm"]
 
 
 
