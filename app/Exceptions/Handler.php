@@ -54,8 +54,7 @@ class Handler extends ExceptionHandler
             'err_msg' => $e->getMessage(),
             'file' => $e->getFile(),
             'line' => $e->getLine(),
-            'code' => $e->getCode(),
-            'userToken' => isset($_SERVER['HTTP_USER_TOKEN'])? $_SERVER['HTTP_USER_TOKEN'] : ''
+            'code' => $e->getCode()
         ];
 
 
