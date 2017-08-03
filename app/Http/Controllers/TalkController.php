@@ -32,12 +32,13 @@ class TalkController extends Controller
                 'msg' => $validator->errors(),
                 'elapsed_time' => 0
             ];
-            LogService::getInstance()->error('SubscribeTag error', $log);
+            LogService::getInstance()->error('SubscribeTopic error', $log);
             return $this->response(400);
         }
 
         $device_id = Request::input('device_id');
         $topic = Request::input('topic');
+        LogService::getInstance()->info("input ", ["device_id" => $device_id, 'topic' => $topic]);
         $result = TalkService::SubscribeTag($device_id, $topic);
 
         print_r($result);
@@ -46,16 +47,15 @@ class TalkController extends Controller
         $log = [
             'request' => Request::all(),
             'response' => '',
-            'msg' => 'swingRemotePush success!',
+            'msg' => 'SubscribeTopic success!',
             'elapsed_time' => $end_time
         ];
         if ($result < 0) {
             $log['msg'] = 'push error';
-            LogService::getInstance()->error('otherPush error', $log);
+            LogService::getInstance()->error('SubscribeTopic error', $log);
             return $this->response(500);
         } else {
-            $log['msg'] = 'push error';
-            LogService::getInstance()->info('otherPush success', $log);
+            LogService::getInstance()->info('SubscribeTopic success', $log);
             return $this->response(200);
         }
     }
@@ -77,7 +77,7 @@ class TalkController extends Controller
                 'msg' => $validator->errors(),
                 'elapsed_time' => 0
             ];
-            LogService::getInstance()->error('PushByTag error', $log);
+            LogService::getInstance()->error('PushByTopic error', $log);
             return $this->response(400);
         }
 
@@ -91,16 +91,15 @@ class TalkController extends Controller
         $log = [
             'request' => Request::all(),
             'response' => '',
-            'msg' => 'swingRemotePush success!',
+            'msg' => 'PushByTopic success!',
             'elapsed_time' => $end_time
         ];
         if ($result < 0) {
-            $log['msg'] = 'push error';
-            LogService::getInstance()->error('otherPush error', $log);
+            $log['msg'] = 'PushByTopic error';
+            LogService::getInstance()->error('PushByTopic error', $log);
             return $this->response(500);
         } else {
-            $log['msg'] = 'push error';
-            LogService::getInstance()->info('otherPush success', $log);
+            LogService::getInstance()->info('PushByTopic success', $log);
             return $this->response(200);
         }
     }
