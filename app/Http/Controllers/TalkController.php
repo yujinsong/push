@@ -41,7 +41,6 @@ class TalkController extends Controller
         LogService::getInstance()->info("input ", ["device_id" => $device_id, 'topic' => $topic]);
         $result = TalkService::SubscribeTag($device_id, $topic);
 
-        print_r($result);
         $result = 1;
         $end_time = CommonService::requestElapsedTime($start_time);
         $log = [
@@ -66,7 +65,7 @@ class TalkController extends Controller
         $validator = Validator::make(Request::all(), [
             'topic' => 'required',
             'description' => 'required',
-            'uri'
+            'uri' => 'required',
         ]);
 
         if ($validator->fails()) {

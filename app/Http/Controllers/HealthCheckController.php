@@ -21,7 +21,7 @@ class HealthCheckController extends Controller
      */
     public function HealthChecker() {
         $data = array(
-            'code' => 0,
+            'code' => 200,
             'msg' => 'success',
             'data' => array()
         );
